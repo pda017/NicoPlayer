@@ -157,6 +157,16 @@ function UpdateMentY(mentList,canvasEle)
             var randY = rand(0,canvasEle.height-ment.size);
             ment.posY = randY;
         }
+        else if(pos == 1) //bottom
+        {
+            var randY = rand((canvasEle.height/2) + ment.size,canvasEle.height-ment.size);
+            ment.posY = randY;
+        }
+        else if(pos == 2) //top
+        {
+            var randY = rand(ment.size,(canvasEle.height/2) - ment.size);
+            ment.posY = randY;
+        }
         //console.log(ment.timeline);
     }
 }
