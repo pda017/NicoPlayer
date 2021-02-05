@@ -1,20 +1,54 @@
+//CreateHtml
+var scriptEle = document.getElementById("NicoScript");
+var videoUrl = scriptEle.getAttribute("videoUrl");
+var mentUrl = scriptEle.getAttribute("mentUrl");
+
+var container = document.createElement("div");
+container.className = "Container";
+document.body.appendChild(container);
+
+var video = document.createElement("video");
+video.className = "Video";
+video.controls = true;
+video.src = videoUrl;
+container.appendChild(video);
+
+var canvas = document.createElement("canvas");
+canvas.className = "Canvas";
+canvas.width = 1280;
+canvas.height = 720;
+container.appendChild(canvas);
+
+var expandButton = document.createElement("div");
+expandButton.className = "ExpandButton";
+container.appendChild(expandButton);
+
+var expandIcon = document.createElement("i");
+expandIcon.className = "fas fa-expand";
+expandButton.appendChild(expandIcon);
+
+var loadingButton = document.createElement("button");
+loadingButton.className ="Loading";
+loadingButton.textContent = "Loading...";
+container.appendChild(loadingButton);
+
 //Start
-var video = document.getElementById("NicoVideo");
-var canvas = document.getElementById("NicoCanvas");
+//var video = document.getElementById("NicoVideo");
+//var canvas = document.getElementById("NicoCanvas");
 var ctx = canvas.getContext("2d");
-var container = document.getElementById('NicoContainer');
-var iframeEle = window.parent.document.getElementById("NicoPlayer");
-var videoUrl = iframeEle.getAttribute("videoUrl");
-var mentUrl = iframeEle.getAttribute("mentUrl");
-var fontSize = iframeEle.getAttribute("fontSize");
-var textAlpha = iframeEle.getAttribute("textAlpha");
-var expandButton = document.querySelector(".ExpandButton");
-var loadingButton = document.querySelector(".Loading");
+//var container = document.getElementById('NicoContainer');
+//var iframeEle = window.parent.document.getElementById("NicoPlayer");
+//var videoUrl = iframeEle.getAttribute("videoUrl");
+//var mentUrl = iframeEle.getAttribute("mentUrl");
+var fontSize = 30;
+var textAlpha = 1;
+//var expandButton = document.querySelector(".ExpandButton");
+//var loadingButton = document.querySelector(".Loading");
 var mentSpeed = 0.25;
 var useFont ="Nanum Gothic";
 var g_MentList;
 //Process
-video.setAttribute("src",videoUrl);
+//video.setAttribute("src",videoUrl);
 expandButton.addEventListener("click",()=>toggleFullScreen(container));
 
 
