@@ -101,15 +101,15 @@ function DrawText(x,y,text,size,pos,color)
     {
         ctx.textAlign = "center";
         ctx.textBaseline = "Middle";
-        ctx.strokeText(text, canvas.width/2, canvas.height * 0.9);
-        ctx.fillText(text, canvas.width/2, canvas.height * 0.9);
+        ctx.strokeText(text, canvas.width/2, y);
+        ctx.fillText(text, canvas.width/2, y);
     }
     else if(pos == 2) //top
     {
         ctx.textAlign = "center";
         ctx.textBaseline = "Middle";
-        ctx.strokeText(text, canvas.width/2, canvas.height *0.1);
-        ctx.fillText(text, canvas.width/2, canvas.height *0.1);
+        ctx.strokeText(text, canvas.width/2, y);
+        ctx.fillText(text, canvas.width/2, y);
     }
 }
 
