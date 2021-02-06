@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="Style.css"/>
 </head>
 <body>
-{0}
+<script>
+var mentXmlText = "{0}";
+</script>
     <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" videoUrl="https://cldup.com/F20sfgS-7D.mp4" mentUrl="https://cloudup.com/iYMJrm8voVS" fontSize="30" textAlpha="1"></script>
 </body>
 </html>
