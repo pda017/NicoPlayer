@@ -2,9 +2,9 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="Style.css"/>
+    <link rel="stylesheet" href="https://pda017.github.io/NicoPlayer/Style.css"/>
 </head>
 <body>
-    <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" videoUrl="https://cldup.com/F20sfgS-7D.mp4" mentUrl="https://cloudup.com/iYMJrm8voVS" fontSize="30" textAlpha="1"></script>
+    <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" videoUrl="{0}" mentUrl="{1}" fontSize="{2}" textAlpha="{3}"></script>
 </body>
 </html>

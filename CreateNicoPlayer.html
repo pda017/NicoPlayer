@@ -1,29 +1,31 @@
-<label>Choose a xml file:</label>
+<label>Video Url:</label>
+<input type="text" id="videoUrl"><br>
+<label>Ment Url:</label>
+<input type="text" id="mentUrl"><br>
+<label>Font Size:</label>
+<input type="text" id="fontSize" value="30"><br>
+<label>Text Alpha:</label>
+<input type="text" id="textAlpha" value="1"><br>
 <br>
-<input type="file" id="xmlFile">
-<br><br>
 <button id="Create">Create</button>
 <script src="FileSaver/FileSaver.js"></script>
 <script>
-    var xmlFile = document.getElementById("xmlFile");
+    var fontSize = document.getElementById("fontSize");
+    var textAlpha = document.getElementById("textAlpha");
+    var videoUrl = document.getElementById("videoUrl");
+    var mentUrl = document.getElementById("mentUrl");
     var createButton = document.getElementById("Create");
     createButton.onclick = function()
     {
-        if(xmlFile.files.length != 0)
+        fetch("NicoPlayerFormat.txt").then(res=>res.text())
+        .then(formatText=>
         {
-            var reader = new FileReader();
-            reader.onloadend = function(event) 
-            {
-                var xmlText = event.target.result;
-                fetch("NicoPlayerFormat.txt").then(res=>res.text())
-                .then(formatText=>
-                {
-                    var resultText = formatText.replace('{0}',xmlText);
-                    var blob = new Blob([xmlText], {type: "text/plain;charset=utf-8"});
-                    saveAs(blob, "NicoPlayer.txt");
-                });
-            }
-            reader.readAsText(xmlFile.files[0]);
-        }
+            formatText = formatText.replace('{0}',videoUrl.value);
+            formatText = formatText.replace('{1}',mentUrl.value);
+            formatText = formatText.replace('{2}',fontSize.value);
+            formatText = formatText.replace('{3}',textAlpha.value);
+            var blob = new Blob([formatText], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, "NicoPlayer.html");
+        });
     }
 </script>
