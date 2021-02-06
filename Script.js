@@ -1,6 +1,4 @@
 //Start
-console.log()
-
 var scriptEle = document.getElementById("NicoScript");
 var videoUrl = scriptEle.getAttribute("videoUrl");
 var mentUrl = scriptEle.getAttribute("mentUrl");
