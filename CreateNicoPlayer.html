@@ -1,0 +1,22 @@
+<label>Choose a xml file:</label>
+<br>
+<input type="file" id="xmlFile">
+<br><br>
+<button id="Create">Create</button>
+<script>
+    var xmlFile = document.getElementById("xmlFile");
+    var createButton = document.getElementById("Create");
+    createButton.onclick = function()
+    {
+        if(xmlFile.files.length != 0)
+        {
+            var reader = new FileReader();
+            reader.onloadend = function(event) 
+            {
+                var text = event.target.result;
+                console.log(text);
+            }
+            reader.readAsText(xmlFile.files[0]);
+        }
+    }
+</script>
