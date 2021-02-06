@@ -1,4 +1,4 @@
-//CreateHtml
+//Start
 var scriptEle = document.getElementById("NicoScript");
 var videoUrl = scriptEle.getAttribute("videoUrl");
 var mentUrl = scriptEle.getAttribute("mentUrl");
@@ -11,6 +11,7 @@ var video = document.createElement("video");
 video.className = "Video";
 video.controls = true;
 video.src = videoUrl;
+video.addEventListener('webkitfullscreenchange', ()=>exitFullscreen());
 container.appendChild(video);
 
 var canvas = document.createElement("canvas");
@@ -32,25 +33,15 @@ loadingButton.className ="Loading";
 loadingButton.textContent = "Loading...";
 container.appendChild(loadingButton);
 
-//Start
-//var video = document.getElementById("NicoVideo");
-//var canvas = document.getElementById("NicoCanvas");
 var ctx = canvas.getContext("2d");
-//var container = document.getElementById('NicoContainer');
-//var iframeEle = window.parent.document.getElementById("NicoPlayer");
-//var videoUrl = iframeEle.getAttribute("videoUrl");
-//var mentUrl = iframeEle.getAttribute("mentUrl");
-var fontSize = 30;
-var textAlpha = 1;
-//var expandButton = document.querySelector(".ExpandButton");
-//var loadingButton = document.querySelector(".Loading");
+var fontSize = scriptEle.getAttribute("fontSize");
+var textAlpha = scriptEle.getAttribute("textAlpha");
 var mentSpeed = 0.25;
 var useFont ="Nanum Gothic";
 var g_MentList;
-//Process
-//video.setAttribute("src",videoUrl);
-expandButton.addEventListener("click",()=>toggleFullScreen(container));
 
+//Process
+expandButton.addEventListener("click",()=>toggleFullScreen(container));
 
 fetch(mentUrl).then(res=>res.text())
 .then(data=>
@@ -68,6 +59,7 @@ fetch(mentUrl).then(res=>res.text())
     })
     .catch(err=>console.log(err));
 
+//function
 function UpdateText()
 {
     var fullLength = video.duration * canvas.width * mentSpeed;

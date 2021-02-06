@@ -12,6 +12,10 @@
         {
             height:100%;
             outline: 0;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
         }
         .Canvas
         {
