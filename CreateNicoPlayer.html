@@ -3,7 +3,7 @@
 <input type="file" id="xmlFile">
 <br><br>
 <button id="Create">Create</button>
-<script src="FileSaver.js"></script>
+<script src="FileSaver/FileSaver.js"></script>
 <script>
     var xmlFile = document.getElementById("xmlFile");
     var createButton = document.getElementById("Create");
@@ -18,13 +18,9 @@
                 fetch("NicoPlayerFormat.txt").then(res=>res.text())
                 .then(formatText=>
                 {
-                    xmlText = xmlText.replace('\n',"");
                     var resultText = formatText.replace('{0}',xmlText);
-                    
-                    var blob = new Blob(["This is my first text."], {type: "text/plain;charset=utf-8"});
-                    saveAs(blob, "testfile1.txt");
-
-                    console.log(resultText);
+                    var blob = new Blob([xmlText], {type: "text/plain;charset=utf-8"});
+                    saveAs(blob, "NicoPlayer.txt");
                 });
             }
             reader.readAsText(xmlFile.files[0]);
