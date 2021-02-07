@@ -111,12 +111,12 @@ function toggleFullScreen(element) {
     if(fullscreenElement)
     {
         exitFullscreen();
-        screen.orientation.unlock();
+        //screen.orientation.unlock();
     }
     else
     {
         launchIntoFullscreen(element);
-        makeLandscape();
+        //makeLandscape();
     }
 }
 
