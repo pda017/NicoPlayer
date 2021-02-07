@@ -41,6 +41,7 @@ var useFont ="Nanum Gothic";
 var g_MentList;
 
 //Process
+makeLandscape();
 expandButton.addEventListener("click",()=>toggleFullScreen(container));
 
 fetch(mentUrl).then(res=>res.text())
