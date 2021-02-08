@@ -7,12 +7,15 @@ var container = document.createElement("div");
 container.className = "Container";
 document.body.appendChild(container);
 
-var video = document.createElement("video");
-video.className = "Video";
-video.controls = true;
-video.src = videoUrl;
-video.addEventListener('webkitfullscreenchange', ()=>exitFullscreen());
-container.appendChild(video);
+if(!isYoutube)
+{
+    var video = document.createElement("video");
+    video.className = "Video";
+    video.controls = true;
+    video.src = videoUrl;
+    video.addEventListener('webkitfullscreenchange', ()=>exitFullscreen());
+    container.appendChild(video);
+}
 
 var canvas = document.createElement("canvas");
 canvas.className = "Canvas";
@@ -23,10 +26,10 @@ container.appendChild(canvas);
 var expandButton = document.createElement("div");
 expandButton.className = "ExpandButton";
 container.appendChild(expandButton);
-
 var expandIcon = document.createElement("i");
 expandIcon.className = "fas fa-expand";
 expandButton.appendChild(expandIcon);
+expandButton.addEventListener("click",()=>toggleFullScreen(container));
 
 var loadingButton = document.createElement("button");
 loadingButton.className ="Loading";
@@ -40,9 +43,16 @@ var mentSpeed = 0.25;
 var useFont ="Nanum Gothic";
 var g_MentList;
 
-//Process
-expandButton.addEventListener("click",()=>toggleFullScreen(container));
+if(isYoutube)
+{
+    OnYoutubeReady = ()=>
+    {
+        var ytFrame = document.getElementById("ytplayer");
+        container.insertBefore(ytFrame,canvas);
+    }
+}
 
+//Process
 fetch(mentUrl).then(res=>res.text())
 .then(data=>
     {
@@ -62,12 +72,28 @@ fetch(mentUrl).then(res=>res.text())
 //function
 function UpdateText()
 {
-    var fullLength = video.duration * canvas.width * mentSpeed;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var duration = 0;
+    var currentTime;
+    if(isYoutube)
+    {
+        if(!ytPlayer || ytPlayer.getDuration == null || ytPlayer.getCurrentTime == null)
+        {
+            return;
+        }
+        duration = ytPlayer.getDuration();
+        currentTime = ytPlayer.getCurrentTime();
+    }
+    else
+    {
+        duration = video.duration;
+        currentTime = video.currentTime;
+    }
+    var fullLength = duration * canvas.width * mentSpeed;
     for(var ment of g_MentList)
     {
-        var oriMentX = ((ment.timeline / video.duration) * fullLength) + canvas.width;
-        var videoX = ((video.currentTime / video.duration) * fullLength);
+        var oriMentX = ((ment.timeline / duration) * fullLength) + canvas.width;
+        var videoX = ((currentTime / duration) * fullLength);
         var mentX = oriMentX - videoX;
         if(mentX + ment.width < 0 || mentX > canvas.width)
             continue;

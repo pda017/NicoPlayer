@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="Style.css"/>
+</head>
+<body>
+    <div id="ytplayer"></div>
+    <script>
+        // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Replace the 'ytplayer' element with an <iframe> and
+        // YouTube player after the API code downloads.
+        var ytPlayer;
+        var isYoutube = true;
+        var OnYoutubeReady;
+        function onYouTubePlayerAPIReady() {
+            ytPlayer = new YT.Player('ytplayer', {
+            height: '1280',
+            width: '720',
+            videoId: 'M7lc1UVf-VE'
+            });
+            if(OnYoutubeReady)
+            {
+                OnYoutubeReady();
+            }
+        }
+    </script>
+    <script id="NicoScript" src="Script.js" videoUrl="https://cldup.com/F20sfgS-7D.mp4" mentUrl="https://cldup.com/pbAy1egzzy.xml" fontSize="30" textAlpha="1"></script>
+</body>
+</html>

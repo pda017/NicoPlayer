@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://pda017.github.io/NicoPlayer/Style.css"/>
 </head>
 <body>
+    <script>var isYoutube = false;</script>
     <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" videoUrl="{0}" mentUrl="{1}" fontSize="{2}" textAlpha="{3}"></script>
 </body>
 </html>
