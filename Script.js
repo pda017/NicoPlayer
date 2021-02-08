@@ -7,6 +7,15 @@ var container = document.createElement("div");
 container.className = "Container";
 document.body.appendChild(container);
 
+if(typeof ytPlayer != "undefined")
+{
+    var isYoutube = true;
+}
+else
+{
+    var isYoutube = false;
+}
+
 if(!isYoutube)
 {
     var video = document.createElement("video");
