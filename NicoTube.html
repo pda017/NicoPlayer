@@ -15,7 +15,8 @@
 
         // Replace the 'ytplayer' element with an <iframe> and
         // YouTube player after the API code downloads.
-        var ytPlayer;
+        var ytPlayer = "defined";
+        var isYoutube = true;
         var OnYoutubeReady;
         function onYouTubePlayerAPIReady() {
             ytPlayer = new YT.Player('ytplayer', {
@@ -29,6 +30,6 @@
             }
         }
     </script>
-    <script id="NicoScript" src="Script.js" videoUrl="https://cldup.com/F20sfgS-7D.mp4" mentUrl="https://cldup.com/pbAy1egzzy.xml" fontSize="30" textAlpha="1"></script>
+    <script id="NicoScript" src="Script.js" mentUrl="https://cldup.com/pbAy1egzzy.xml" fontSize="30" textAlpha="1"></script>
 </body>
 </html>
