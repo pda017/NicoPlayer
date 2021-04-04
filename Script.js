@@ -44,7 +44,13 @@ container.appendChild(loadingButton);
 var ctx = canvas.getContext("2d");
 var fontSize = scriptEle.getAttribute("fontSize");
 var textAlpha = scriptEle.getAttribute("textAlpha");
+var addMentSpeed = scriptEle.getAttribute("mentSpeed");
 var mentSpeed = 0.25;
+if(addMentSpeed != null)
+{
+    mentSpeed *= Number(addMentSpeed);
+    console.log("mentSpeed:"+mentSpeed);
+}
 var useFont ="Nanum Gothic";
 var g_MentList;
 var CheckMentBoxColInterval = 0;

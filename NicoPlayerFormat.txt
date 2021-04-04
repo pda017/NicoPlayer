@@ -5,6 +5,6 @@
     <link rel="stylesheet" href="https://pda017.github.io/NicoPlayer/Style.css"/>
 </head>
 <body>
-    <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" videoUrl="{0}" mentUrl="{1}" fontSize="{2}" textAlpha="{3}"></script>
+    <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" videoUrl="{0}" mentUrl="{1}" fontSize="{2}" textAlpha="{3}" mentSpeed="{4}"></script>
 </body>
 </html>

@@ -30,6 +30,6 @@
             }
         }
     </script>
-    <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" mentUrl="{1}" fontSize="{2}" textAlpha="{3}"></script>
+    <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" mentUrl="{1}" fontSize="{2}" textAlpha="{3}" mentSpeed="{4}"></script>
 </body>
 </html>
