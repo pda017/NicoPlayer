@@ -58,4 +58,5 @@ video::-webkit-media-controls-fullscreen-button {display: none !important;}
 {
     height : 100%;
     width : 100%;
+    position:absolute;
 }

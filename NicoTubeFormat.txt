@@ -17,17 +17,12 @@
         // YouTube player after the API code downloads.
         var ytPlayer = "defined";
         var isYoutube = true;
-        var OnYoutubeReady;
         function onYouTubePlayerAPIReady() {
             ytPlayer = new YT.Player('ytplayer', {
             height: '1280',
             width: '720',
             videoId: '{0}'
             });
-            if(OnYoutubeReady)
-            {
-                OnYoutubeReady();
-            }
         }
     </script>
     <script id="NicoScript" src="https://pda017.github.io/NicoPlayer/Script.js" mentUrl="{1}" fontSize="{2}" textAlpha="{3}" mentSpeed="{4}"></script>

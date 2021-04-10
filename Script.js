@@ -21,6 +21,19 @@ if(!isYoutube)
     video.addEventListener('webkitfullscreenchange', ()=>exitFullscreen());
     container.appendChild(video);
 }
+else
+{
+    var ytPlayerReplaceInterval = setInterval(()=>
+    {
+        if(typeof ytPlayer == "object")
+        {
+            var ytFrame = document.getElementById("ytplayer");
+            container.insertBefore(ytFrame,canvas);
+            clearInterval(ytPlayerReplaceInterval);
+            console.log("ytPlayerReplaceInterval");
+        }
+    });
+}
 
 var canvas = document.createElement("canvas");
 canvas.className = "Canvas";
@@ -46,6 +59,8 @@ var fontSize = scriptEle.getAttribute("fontSize");
 var textAlpha = scriptEle.getAttribute("textAlpha");
 var addMentSpeed = scriptEle.getAttribute("mentSpeed");
 var mentSpeed = 0.25;
+var mentFixIter = 1;
+var mentFixCount = 0;
 if(addMentSpeed != null)
 {
     mentSpeed *= Number(addMentSpeed);
@@ -54,15 +69,6 @@ if(addMentSpeed != null)
 var useFont ="Nanum Gothic";
 var g_MentList;
 var CheckMentBoxColInterval = 0;
-
-if(isYoutube)
-{
-    OnYoutubeReady = ()=>
-    {
-        var ytFrame = document.getElementById("ytplayer");
-        container.insertBefore(ytFrame,canvas);
-    }
-}
 
 //Process
 fetch(mentUrl).then(res=>res.text())
@@ -101,18 +107,23 @@ function CheckBoxCol(x1,y1,w1,h1,x2,y2,w2,h2)
 }
 function FixColMentY(ment,mentX,duration,fullLength)
 {
-    for(var colMent of g_MentList)
+    var i;
+    for(i=0;i<mentFixIter;i++)
     {
-        if(colMent.timeline == ment.timeline)
+        for(var colMent of g_MentList)
         {
-            continue;
-        }
-        var colX = (colMent.timeline / duration) * fullLength;
-        if(CheckBoxCol(mentX,ment.posY,ment.width,ment.height
-            ,colX,colMent.posY,colMent.width,colMent.height))
-        {
-            //console.log(ment.comment + "(Col)");
-            UpdateMentY(ment,canvas);
+            if(colMent.timeline == ment.timeline)
+            {
+                continue;
+            }
+            var colX = (colMent.timeline / duration) * fullLength;
+            if(CheckBoxCol(mentX,ment.posY,ment.width,ment.height
+                ,colX,colMent.posY,colMent.width,colMent.height))
+            {
+                //console.log(ment.comment + "(Col)");
+                UpdateMentY(ment,canvas);
+                mentFixCount++;
+            }
         }
     }
 }
@@ -139,8 +150,8 @@ function CheckMentBoxCol()
         var mentX = (ment.timeline / duration) * fullLength;
         FixColMentY(ment,mentX,duration,fullLength);
     }
-
     clearInterval(CheckMentBoxColInterval);
+    console.log("mentFixCount:" + mentFixCount);
     console.log("clearInterval(CheckMentBoxColInterval)");
 }
 
