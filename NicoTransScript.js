@@ -1,6 +1,8 @@
 //Data
 var MentXmlDoc;
 var MentFileName;
+var MentNum = 0;
+var FixMentNum = 0;
 
 //Scene 0
 var Scene0_Input = document.createElement("input");
@@ -30,6 +32,7 @@ function Scene0_SetActive(bActive)
 var Scene1_XmlField = document.createElement("textarea");
 Scene1_XmlField.cols = 50;
 Scene1_XmlField.rows = 25;
+SetMentAreaChangeEvent(Scene1_XmlField, OnMentAreaChange);
 
 var Scene1_Desc = document.createElement("div");
 Scene1_Desc.innerText = "텍스트 번역후 버튼을 눌러주세요.";
@@ -39,16 +42,21 @@ var Scene1_DownButton = document.createElement("button");
 Scene1_DownButton.innerText = "Download";
 Scene1_DownButton.onclick = OnScene1DownButton;
 
+var Scene1_MentNum = document.createElement("div");
+Scene1_MentNum.innerText = "Ment:\nFixMent:";
+
 function Scene1_SetActive(bActive)
 {
     if(bActive)
     {
+        document.body.appendChild(Scene1_MentNum);
         document.body.appendChild(Scene1_XmlField);
         document.body.appendChild(Scene1_Desc);
         document.body.appendChild(Scene1_DownButton);
     }
     else
     {
+        document.body.removeChild(Scene1_MentNum);
         document.body.removeChild(Scene1_XmlField);
         document.body.removeChild(Scene1_Desc);
         document.body.removeChild(Scene1_DownButton);
@@ -69,23 +77,49 @@ function OnUploadXml()
             {
                 MentFileName = file.name;
                 MentXmlDoc = XmlParse(e);
-                ExtractMent(MentXmlDoc,(e)=>
-                {
-                    Scene1_XmlField.value += e + "\n";
-                });
+                UpdateMentNum(MentXmlDoc);
+                Scene1_XmlField.value = ExtractMent(MentXmlDoc);
+                UpdateScene1_MentNum();
             });
             return ;
         }
     }
 }
-
-function ExtractMent(doc,onAdd)
+function OnMentAreaChange()
+{
+    var ments = Scene1_XmlField.value.split('\n');
+    FixMentNum = ments.length;
+    UpdateScene1_MentNum();
+}
+function UpdateScene1_MentNum()
+{
+    Scene1_MentNum.innerText = "Ment:" + MentNum + "\nFixMent:" + FixMentNum; 
+}
+function SetMentAreaChangeEvent(textArea,event)
+{
+    if (textArea.addEventListener) {
+        textArea.addEventListener('input', event, false);
+      } else if (textArea.attachEvent) {
+        textArea.attachEvent('onpropertychange',event);
+      }
+}
+function UpdateMentNum(doc)
 {
     var chats = doc.getElementsByTagName("chat");
-    for(var chat of chats)
+    MentNum = chats.length;
+}
+function ExtractMent(doc)
+{
+    var str = "";
+    var chats = doc.getElementsByTagName("chat");
+    for(let i=0,length = chats.length;i<length;i++)
     {
-        onAdd(chat.innerHTML);
+        var chat = chats[i];
+        str += chat.innerHTML;
+        if(i < length-1)
+            str += "\n";
     }
+    return str;
 }
 function ReplaceMent(doc,text)
 {
