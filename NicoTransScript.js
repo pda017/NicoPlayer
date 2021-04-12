@@ -30,7 +30,7 @@ function Scene0_SetActive(bActive)
 
 //Scene 1
 var Scene1_XmlField = document.createElement("textarea");
-Scene1_XmlField.cols = 50;
+Scene1_XmlField.cols = 125;
 Scene1_XmlField.rows = 25;
 SetMentAreaChangeEvent(Scene1_XmlField, OnMentAreaChange);
 
