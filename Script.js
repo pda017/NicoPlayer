@@ -316,11 +316,11 @@ function ReadNicoComments(xmlFile,fsize)
             {
                 if(ms == 'ue')
                 {
-                    pos = 1;
+                    pos = 2;
                 }
                 else if(ms == 'shita')
                 {
-                    pos = 2;
+                    pos = 1;
                 }
                 else if(ms == 'big')
                 {
